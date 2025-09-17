@@ -1,0 +1,69 @@
+/* General reset */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #F5F5DC; /* warm beige */
+  color: #333333; /* dark gray text */
+  text-align: center;
+}
+
+/* Header */
+header {
+  background-color: #2E7D32; /* deep green */
+  color: white;
+  padding: 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+/* Navigation */
+nav {
+  background: #eee;
+  padding: 1rem;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #2E7D32; /* green links */
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #D4AF37; /* soft gold on hover */
+}
+
+/* Main content */
+main {
+  padding: 2rem;
+  font-size: 1.5rem;
+}
+
+button {
+  background-color: #2E7D32;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #D4AF37; /* gold hover */
+  color: #333333;
+}
+
+/* Footer */
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #333333; /* dark gray */
+  color: white;
+}
