@@ -1,41 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tenant - KIAGE HOMES</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Dashboard | KIAGE HOMES</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="Tenant.html">TENANT</a></li>
-    </ul>
-  </nav>
+    <header>
+        <h1>KIAGE HOMES</h1>
+        <nav>
+            <a href="home.html">HOME</a>
+            <a href="tenant.html" class="active">TENANT</a>
+            <a href="landlord.html">LANDLORD</a>
+            <a href="guest.html">GUEST</a>
+        </nav>
+    </header>
 
-  <!-- Tenant Section -->
-  <header>
-    <h1>Tenant Dashboard</h1>
-    <p>Welcome Tenant! Manage your housing details with KIAGE HOMES.</p>
-  </header>
+    <main>
+        <section class="tenant-actions">
+            <h2>Submit Maintenance Request</h2>
+            <form id="maintenanceForm">
+                <label for="issue">Describe the Issue:</label>
+                <textarea id="issue" placeholder="E.g. leaking tap, broken lock..."></textarea>
 
-  <main>
-    <section>
-      <h2>Tenant Services</h2>
-      <ul>
-        <li>View available houses</li>
-        <li>Check rent payment status</li>
-        <li>Submit maintenance requests</li>
-        <li>Update personal details</li>
-      </ul>
-    </section>
-  </main>
+                <label for="urgency">Urgency Level:</label>
+                <select id="urgency">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 KIAGE HOMES. All rights reserved.</p>
-  </footer>
+                <button type="submit" onclick="submitMaintenance()">Submit Request</button>
+            </form>
+        </section>
+
+        <section class="tenant-actions">
+            <h2>Record Rent Payment</h2>
+            <form id="rentForm">
+                <label for="amount">Amount Paid:</label>
+                <input type="number" id="amount" placeholder="Enter amount (Ksh)">
+                <label for="date">Payment Date:</label>
+                <input type="date" id="date">
+                <button type="submit" onclick="recordPayment()">Record Payment</button>
+            </form>
+        </section>
+
+        <section class="tenant-actions">
+            <h2>Submit Complaint</h2>
+            <form id="complaintForm">
+                <textarea id="complaint" placeholder="Write your complaint here..."></textarea>
+                <button type="submit" onclick="submitcomplaint">Submit Complaint</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+    // Reusable popup message
+    function showPopup(message, color = "#b38b59") {
+        const popup = document.createElement("div");
+        popup.className = "popup";
+        popup.style.backgroundColor = color;
+        popup.textContent = message;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 3000);
+    }
+
+    document.getElementById("rentForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const amount = document.getElementById('amount').value;
+        const date = document.getElementById('date').value;
+        if (!date) {
+            showPopup("⚠ Please input date", "#c0392b");
+            return;
+        }
+        if (amount && date) {
+            showPopup(💰 Rent payment of Ksh ${amount} recorded on ${date}, "#27ae60");
+            this.reset();
+        } else {
+            showPopup("⚠ Please fill out all payment fields.", "#c0392b");
+        }
+    });
+
+    document.getElementById("complaintForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const complaint = document.getElementById('complaint').value;
+        if (complaint) {
+            showPopup("📨 Your complaint has been submitted successfully!", "#27ae60");
+            this.reset();
+        } else {
+            showPopup("⚠ Please write your complaint before submitting.", "#c0392b");
+        }
+    });
+
+    document.getElementById("maintenanceForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const issue = document.getElementById('issue').value;
+        const urgency = document.getElementById('urgency').value;
+        if (issue) {
+            showPopup(🧰 Maintenance request submitted!\nIssue: ${issue} (${urgency}), "#27ae60");
+            this.reset();
+        } else {
+            showPopup("⚠ Please describe the issue before submitting.", "#c0392b");
+        }
+    });
+</script>
 </body>
 </html>
